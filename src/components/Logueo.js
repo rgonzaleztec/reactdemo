@@ -13,6 +13,12 @@ const Logueo = () => {
     const correo = e.target.formBasicEmail.value;
     const contrasena = e.target.fromBasicPassword.value;
     console.log(correo, contrasena);
+    const usuarioreg = await createUserWithEmailAndPassword(
+      auth,
+      correo,
+      contrasena
+    );
+    console.log(usuarioreg);
   }
 
   return (
@@ -31,7 +37,7 @@ const Logueo = () => {
           </Form.Group>
 
           <Button variant="primary" type="submit">
-            {estaRegistrandose ? 'Regsitrate' : 'Inicia Sesion'};
+            {estaRegistrandose ? 'Registrate' : 'Inicia Sesion'}
           </Button>
         </Form>
 
@@ -42,7 +48,7 @@ const Logueo = () => {
         <Button
           style={{ width: '300px' }}
           variant="secondary"
-          onClick={() => estaRegistrandose(!estaRegistrandose)}
+          onClick={() => setEstaRegistrandose(!estaRegistrandose)}
         >
           {estaRegistrandose
             ? 'Tienes cuenta, Inicia Sesion'
