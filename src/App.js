@@ -1,5 +1,4 @@
 import React, { useState, userEffect } from 'react';
-import 'boot';
 import './style.css';
 import Home from './components/Home';
 import Logueo from './components/Logueo';

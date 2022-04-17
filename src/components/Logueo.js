@@ -18,7 +18,7 @@ const Logueo = () => {
   return (
     <Container>
       <Stack gap={3}>
-        <h1>{estaRegistrandose ? 'Regsitrate' : 'Inicia Sesion'};</h1>
+        <h1>{estaRegistrandose ? 'Regsitrate' : 'Inicia Sesion'}</h1>
         <Form onSubmit={submitHandler}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Correo Electrónico</Form.Label>
