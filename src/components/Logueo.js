@@ -12,19 +12,17 @@ const Logueo = () => {
     e.preventDefault();
     const correo = e.target.formBasicEmail.value;
     const contrasena = e.target.formBasicPassword.value;
-    console.log(correo, contrasena);
     const usuarioreg = await createUserWithEmailAndPassword(
       auth,
       correo,
       contrasena
     );
-    console.log(usuarioreg);
   }
 
   return (
     <Container>
       <Stack gap={3}>
-        <h1>{estaRegistrandose ? 'Regsitrate' : 'Inicia Sesion'}</h1>
+        <h1>{estaRegistrandose ? 'Registrate' : 'Inicia Sesion'}</h1>
         <Form onSubmit={submitHandler}>
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Correo Electrónico</Form.Label>
@@ -36,17 +34,17 @@ const Logueo = () => {
             <Form.Control type="password" placeholder="Password" />
           </Form.Group>
 
-          <Button variant="primary" type="submit">
+          <Button variant="dark" type="submit">
             {estaRegistrandose ? 'Registrate' : 'Inicia Sesion'}
           </Button>
         </Form>
 
-        <Button variant="primary" type="submit" style={{ width: '300px' }}>
+        <Button variant="primary" type="submit" style={{ width: '400px' }}>
           Aceder con Google
         </Button>
 
         <Button
-          style={{ width: '300px' }}
+          style={{ width: '400px' }}
           variant="secondary"
           onClick={() => setEstaRegistrandose(!estaRegistrandose)}
         >
