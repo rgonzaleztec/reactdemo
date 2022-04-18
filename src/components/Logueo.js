@@ -11,7 +11,7 @@ const Logueo = () => {
   async function submitHandler(e) {
     e.preventDefault();
     const correo = e.target.formBasicEmail.value;
-    const contrasena = e.target.fromBasicPassword.value;
+    const contrasena = e.target.formBasicPassword.value;
     console.log(correo, contrasena);
     const usuarioreg = await createUserWithEmailAndPassword(
       auth,
