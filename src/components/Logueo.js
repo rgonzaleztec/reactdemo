@@ -5,9 +5,12 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  signInWithRedirect,
+  GoogleAuthProvider,
 } from 'firebase/auth';
 
 const auth = getAuth(firebaseApp);
+const googleProvider = new GoogleAuthProvider();
 
 const Logueo = () => {
   const [estaRegistrandose, setEstaRegistrandose] = useState(false);
@@ -50,7 +53,12 @@ const Logueo = () => {
           </Button>
         </Form>
 
-        <Button variant="primary" type="submit" style={{ width: '400px' }}>
+        <Button
+          variant="primary"
+          type="submit"
+          style={{ width: '400px' }}
+          onClick={() => signInWithRedirect(auth, googleProvider)}
+        >
           Aceder con Google
         </Button>
 

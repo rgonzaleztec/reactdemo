@@ -18,5 +18,13 @@ export default function App() {
       setUsuarioGlobal(null);
     }
   });
-  return <>{usuarioGlobal ? <Home /> : <Logueo />}</>;
+  return (
+    <>
+      {usuarioGlobal ? (
+        <Home correoUsuario={usuarioGlobal.email} />
+      ) : (
+        <Logueo />
+      )}
+    </>
+  );
 }
