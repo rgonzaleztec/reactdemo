@@ -1,17 +1,18 @@
-import React from "react";
-import { Container, Form, Col, Row, Button } from "react-bootstrap";
+import React from 'react';
+import { Container, Form, Col, Row, Button } from 'react-bootstrap';
 
-import firebaseApp from "../../credenciales";
-import { getFirestore, updateDoc, doc } from "firebase/firestore";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import firebaseApp from '../../credenciales';
+import { getFirestore, updateDoc, doc } from 'firebase/firestore';
+import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
 const firestore = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
 
-const ArgegarTarea = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
+const Argegartarea = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
   let urlDescarga;
 
   async function añadirTarea(e) {
     e.preventDefault();
+    console.Log(1);
     const descripcion = e.target.formDescripcion.value;
     // crear nuevo array de tareas
     const nvoArrayTareas = [
@@ -23,12 +24,14 @@ const ArgegarTarea = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
       },
     ];
     // actualizar base de datos
+    console.Log(1);
     const docuRef = doc(firestore, `usuarios/${correoUsuario}`);
     updateDoc(docuRef, { tareas: [...nvoArrayTareas] });
+    console.Log(2);
     //actualizar estado
     setArrayTareas(nvoArrayTareas);
     // limpiar form
-    e.target.formDescripcion.value = "";
+    e.target.formDescripcion.value = '';
   }
 
   async function fileHandler(e) {
@@ -68,4 +71,4 @@ const ArgegarTarea = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
   );
 };
 
-export default ArgegarTarea;
+export default Argegartarea;
