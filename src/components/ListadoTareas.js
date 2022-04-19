@@ -1,25 +1,22 @@
 import React from 'react';
 import { Stack, Container, Row, Col, Button } from 'react-bootstrap';
+
 import firebaseApp from '../../credenciales';
 import { getFirestore, updateDoc, doc } from 'firebase/firestore';
-
 const firestore = getFirestore(firebaseApp);
 
 const ListadoTareas = ({ arrayTareas, correoUsuario, setArrayTareas }) => {
-  async function eliminarTarea(idTareaEliminar) {
-    // creamos un arreglo nuevo con los objetos que no son el que queremos eliminar
-    // Un nuevo arreglo sin un elemento. Esto no lo elimina de firestore
-    const nuevaArrayTareas = arrayTareas.filter(
-      (objetoTarea) => objetoTarea.id !== idTareaEliminar
+  async function eliminarTarea(idTareaAEliminar) {
+    // crear nuevo array de tareas
+    const nvoArrayTareas = arrayTareas.filter(
+      (objetoTarea) => objetoTarea.id !== idTareaAEliminar
     );
-    // actualizar la BD
-    // Buscamos en la coleccion con el documento que hace referencia al correo del usuario para traer los datos
+    // actualizar base de datos
     const docuRef = doc(firestore, `usuarios/${correoUsuario}`);
-    updateDoc(docuRef, { tareas: [...nuevaArrayTareas] });
-    //actualizamos el estado esta funcion no tiene await porque no tenemos que esperar respuesta
-    setArrayTareas(nuevaArrayTareas);
+    updateDoc(docuRef, { tareas: [...nvoArrayTareas] });
+    //actualizar state
+    setArrayTareas(nvoArrayTareas);
   }
-
   return (
     <Container>
       <Stack>
@@ -29,7 +26,9 @@ const ListadoTareas = ({ arrayTareas, correoUsuario, setArrayTareas }) => {
               <Row>
                 <Col>{objetoTarea.descripcion}</Col>
                 <Col>
-                  <Button variant="secondary">Ver Archivo</Button>
+                  <a href={objetoTarea.url}>
+                    <Button variant="secondary">Ver Archivo</Button>
+                  </a>
                 </Col>
                 <Col>
                   <Button

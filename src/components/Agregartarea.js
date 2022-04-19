@@ -4,15 +4,15 @@ import { Container, Form, Col, Row, Button } from 'react-bootstrap';
 import firebaseApp from '../../credenciales';
 import { getFirestore, updateDoc, doc } from 'firebase/firestore';
 import { getStorage, ref, uploadBytes, getDownloadURL } from 'firebase/storage';
+
 const firestore = getFirestore(firebaseApp);
 const storage = getStorage(firebaseApp);
 
-const Argegartarea = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
+const ArgegarTarea = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
   let urlDescarga;
 
   async function añadirTarea(e) {
     e.preventDefault();
-    console.Log(1);
     const descripcion = e.target.formDescripcion.value;
     // crear nuevo array de tareas
     const nvoArrayTareas = [
@@ -24,10 +24,8 @@ const Argegartarea = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
       },
     ];
     // actualizar base de datos
-    console.Log(1);
     const docuRef = doc(firestore, `usuarios/${correoUsuario}`);
     updateDoc(docuRef, { tareas: [...nvoArrayTareas] });
-    console.Log(2);
     //actualizar estado
     setArrayTareas(nvoArrayTareas);
     // limpiar form
@@ -71,4 +69,4 @@ const Argegartarea = ({ correoUsuario, setArrayTareas, arrayTareas }) => {
   );
 };
 
-export default Argegartarea;
+export default ArgegarTarea;
